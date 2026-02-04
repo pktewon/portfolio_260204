@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // --- 4. Tab Interface (from original file) --- 
+    // --- 3. Tab Interface (from original file) --- 
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
     tabButtons.forEach(button => {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 5. Back to Top Button (from original file) --- 
+    // --- 4. Back to Top Button (from original file) --- 
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. Mobile Menu Toggle (from original file) --- 
+    // --- 5. Mobile Menu Toggle (from original file) --- 
     const menuToggleBtn = document.querySelector('.menu-toggle-btn');
     const nav = document.querySelector('nav');
     if (menuToggleBtn && nav) {
