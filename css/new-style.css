@@ -1,0 +1,463 @@
+/* ==========================================================================
+   1. 전역 스타일 및 변수
+   ========================================================================== */
+
+/* --- 변수 (SK 브랜드 색상) --- */
+:root {
+    --sk-red: #EA002C;
+    --sk-orange: #F47D30;
+    --text-dark: #333;
+    --background-light: #fff;
+    --background-dark: #222;
+    --border-color: #eee;
+}
+
+/* --- 기본 리셋 및 타이포그래피 --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333; /* 흰색 박스 안의 기본 텍스트 색상 */
+    background: url('../images/주식 배경화면.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+h1, h2, h3 {
+    font-weight: 900;
+    letter-spacing: -0.05em;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--sk-orange);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--sk-red);
+}
+
+ul {
+    list-style: none;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. 헤더 및 네비게이션
+   ========================================================================== */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff; /* 어두운 헤더를 위해 흰색으로 변경 */
+}
+
+/* --- 모바일 네비게이션 --- */
+nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--background-dark);
+}
+
+nav.is-open {
+    display: block;
+}
+
+nav ul li a {
+    display: block;
+    padding: 1rem;
+    color: #fff; /* 모바일 네비게이션 링크를 흰색으로 설정 */
+    text-align: center;
+}
+
+.menu-toggle-btn {
+    width: 2rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+header .menu-toggle-btn span {
+    display: block;
+    height: 3px;
+    background-color: #fff; /* 어두운 헤더를 위해 흰색으로 변경 */
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
+   3. 메인 콘텐츠 및 섹션
+   ========================================================================== */
+
+main {
+    flex-grow: 1; /* 메인 콘텐츠가 늘어나 푸터를 아래로 밀어내도록 설정 */
+    padding-top: 60px; /* 헤더 높이에 맞춰 패딩 조정 */
+}
+
+/* --- 히어로 섹션 --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    padding: 0 2rem;
+    background-color: var(--background-dark);
+    color: var(--background-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/main-bg.jpg') no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.hero-text, .hero-image-container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--sk-red);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    max-width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+}
+
+/* --- 공통 콘텐츠 섹션 --- */
+.content-section, .portfolio-section {
+    padding: 4rem 2rem;
+    max-width: 900px;
+    margin: 4rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.content-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-section h2, .portfolio-section h2 {
+    font-size: 2.5rem;
+    color: var(--sk-red);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* --- 패럴랙스 브릿지 --- */
+.parallax-bridge {
+    height: 40vh;
+    background: url('../images/bridge-bg.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+/* ==========================================================================
+   4. 컴포넌트
+   ========================================================================== */
+
+/* --- 버튼 --- */
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    background-color: var(--sk-red);
+    color: var(--background-light) !important;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--sk-orange);
+    color: var(--background-light);
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: var(--sk-red);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 100;
+}
+
+#back-to-top:hover {
+    background: var(--sk-orange);
+}
+
+/* --- 탭 --- */
+.tab-container {
+    margin-top: 2rem;
+}
+
+.tab-buttons {
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    background: #f4f7f6;
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--sk-red);
+    color: var(--background-light);
+    border-color: var(--sk-red);
+}
+
+.tab-content {
+    display: none;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- 포트폴리오 --- */
+.portfolio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.portfolio-item a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.portfolio-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.portfolio-item a:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-item .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.portfolio-item a:hover .info {
+    transform: translateY(0);
+}
+
+
+/* --- 회원가입 폼 --- */
+.signup-form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.signup-form fieldset {
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.signup-form legend {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sk-red);
+    padding: 0 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.radio-group label,
+.checkbox-group label {
+    font-weight: normal;
+    display: inline-flex;
+    align-items: center;
+}
+
+.radio-group input,
+.checkbox-group input {
+    margin-right: 0.5rem;
+}
+
+/* ==========================================================================
+   5. 푸터
+   ========================================================================== */
+
+footer {
+    background-color: rgba(10, 10, 10, 0.8);
+    color: var(--background-light);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ==========================================================================
+   6. 미디어 쿼리 (반응형)
+   ========================================================================== */
+
+/* --- 태블릿 (최소 너비: 768px) --- */
+@media (min-width: 768px) {
+    .portfolio-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .portfolio-item {
+        width: calc(50% - 1rem);
+    }
+}
+
+/* --- 데스크톱 (최소 너비: 1024px) --- */
+@media (min-width: 1024px) {
+    .menu-toggle-btn {
+        display: none;
+    }
+
+    nav {
+        display: block;
+        position: static;
+        background: none;
+        width: auto;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 2rem;
+    }
+
+    nav ul li a {
+        color: var(--background-light); /* 어두운 헤더를 위해 흰색으로 변경 */
+        padding: 0;
+    }
+    
+    .portfolio-item {
+        width: calc(33.333% - 1rem);
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - SK STOCK GUIDE</title>
+    <link rel="stylesheet" href="css/new-style.css">
+    <script src="https://kit.fontawesome.com/4ec79785b5.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1 class="logo"><a href="index.html">SK STOCK GUIDE</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#about">주식이란?</a></li>
+                    <li><a href="index.html#how-to">투자 방법</a></li>
+                    <li><a href="portfolio.html">포트폴리오</a></li>
+                    <li><a href="signup.html">회원가입</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+
+        <main>
+            <section class="content-section">
+                <h2>회원가입</h2>
+                <form class="signup-form">
+                    <fieldset>
+                        <legend>로그인 정보</legend>
+                        <div class="form-group">
+                            <label for="user_id">아이디</label>
+                            <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력해주세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_pw">비밀번호</label>
+                            <input type="password" id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">이메일</label>
+                            <input type="email" id="email" name="email" placeholder="asdf@example.com" required>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>추가 정보</legend>
+                        <div class="form-group">
+                            <label>메일 수신 여부</label>
+                            <div class="radio-group">
+                                <label for="email_ok"><input type="radio" name="email_subscription" id="email_ok" value="ok" checked> 수신 동의</label>
+                                <label for="email_no"><input type="radio" name="email_subscription" id="email_no" value="no"> 수신 거부</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">연락처</label>
+                            <input type="tel" id="phone" name="phone" placeholder="-를 빼고 입력해주세요">
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">생년월일</label>
+                            <input type="date" id="birthdate" name="birthdate">
+                        </div>
+                        <div class="form-group">
+                            <label>취미</label>
+                            <div class="checkbox-group">
+                                <label for="hobby_reading"><input type="checkbox" id="hobby_reading" name="hobby" value="reading"> 독서</label>
+                                <label for="hobby_music"><input type="checkbox" id="hobby_music" name="hobby" value="music"> 음악감상</label>
+                                <label for="hobby_exercise"><input type="checkbox" id="hobby_exercise" name="hobby" value="exercise"> 운동</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="path">가입 경로</label>
+                            <select id="path" name="path">
+                                <option value="blog">블로그</option>
+                                <option value="search">검색</option>
+                                <option value="sns">SNS</option>
+                                <option value="referral">지인추천</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="memo">메모</label>
+                            <textarea id="memo" name="memo" rows="5" placeholder="자유롭게 의견을 남겨주세요"></textarea>
+                        </div>
+                    </fieldset>
+                    
+                    <button type="submit" class="btn-primary">가입하기</button>
+                </form>
+            </section>
+        </main>
+
+        <button id="back-to-top"><i class="fas fa-arrow-up"></i></button>
+        <footer>
+            <p>&copy; 2026 SK STOCK GUIDE. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
