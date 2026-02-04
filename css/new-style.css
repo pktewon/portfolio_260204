@@ -23,25 +23,25 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     color: #333; /* 흰색 박스 안의 기본 텍스트 색상 */
     background: url('../images/주식 배경화면.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    line-height: 1.6;
-    position: relative;
+    background-size: cover; /* 이미지의 비율을 유지하면서 박스를 가득 채우기.다만 넘치는 부분이 있다면 잘라낸다. */
+    line-height: 1.6; /* 줄 간격을 늘려줌을 뜻함 */
+    position: relative; 
 }
 
 body::before {
-    content: '';
+    content: ''; /* 빈 막(종이)를 만들기 위해서 빈 글씨라도 줘야 한다. */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
+    z-index: -1; /* 글자보다 뒤로 보내기 */
 }
 
 h1, h2, h3 {
     font-weight: 900;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.05em; /* 글자들끼리 글자 크기의 5%만큼 좁혀라 */
 }
 
 p {
@@ -67,7 +67,7 @@ ul {
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden; /* 가로 화면을 넘어서 있는 놈들은 숨김 처리해라. */
 }
 
 /* ==========================================================================
@@ -135,7 +135,7 @@ header .menu-toggle-btn span {
    ========================================================================== */
 
 main {
-    flex-grow: 1; /* 메인 콘텐츠가 늘어나 푸터를 아래로 밀어내도록 설정 */
+    flex-grow: 1; /* 남는 공간이 있으면 메인 콘텐츠가 늘어나 푸터를 아래로 밀어내도록 설정 */
     padding-top: 60px; /* 헤더 높이에 맞춰 패딩 조정 */
 }
 
@@ -157,39 +157,96 @@ main {
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: url('../images/main-bg.jpg') no-repeat center center/cover;
     opacity: 0.3;
     z-index: 1;
 }
 
+/* 텍스트와 이미지 컨테이너 위치 잡기 */
 .hero-text, .hero-image-container {
     position: relative;
     z-index: 2;
 }
 
+/* --- 1. 타이틀: 왼쪽에서 빠르게 등장 --- */
 .hero-title {
     font-size: 4rem;
     margin-bottom: 1rem;
     color: var(--sk-red);
+    
+    /* 애니메이션 설정 */
+    opacity: 0; /* 처음엔 안 보임 */
+    animation: slideInLeft 0.8s ease-out forwards; /* 0.8초 만에 슉! */
 }
 
+/* --- 2. 서브텍스트: 오른쪽에서 느리게 등장 --- */
 .hero-subtitle {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+    
+    /* 애니메이션 설정 */
+    opacity: 0; 
+    animation: slideInRight 1.5s ease-out forwards; /* 1.5초 동안 천천히 */
+    animation-delay: 0.3s; /* 타이틀보다 0.3초 늦게 출발 */
 }
 
+/* --- 3. 이미지 박스: 아래에서 위로 등장 --- */
+.hero-image-container {
+    /* 애니메이션 설정 */
+    opacity: 0;
+    animation: slideInUp 1.2s ease-out forwards;
+    animation-delay: 0.5s; /* 텍스트들 나오고 나서 0.5초 뒤에 등장 */
+    perspective: 1000px; /* 3D 효과를 위한 원근감 (부모에게 줌) */
+}
+
+/* 실제 이미지는 마우스 3D 효과만 담당 (등장 애니메이션과 충돌 방지) */
 .hero-image {
     max-width: 80%;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transform-style: preserve-3d;
-    transition: transform 0.1s linear;
+    transition: transform 0.1s linear; /* 마우스 따라다니는 건 부드럽게 */
 }
 
+
+/* --- [핵심] 키프레임 정의 (애니메이션 대본) --- */
+
+/* 왼쪽에서 날아오기 */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px); /* 왼쪽으로 100px 가 있음 */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); /* 제자리 */
+    }
+}
+
+/* 오른쪽에서 날아오기 */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px); /* 오른쪽으로 100px 가 있음 */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); /* 제자리 */
+    }
+}
+
+/* 아래에서 올라오기 */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* 아래로 50px 가 있음 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* 제자리 */
+    }
+}
 /* --- 공통 콘텐츠 섹션 --- */
 .content-section, .portfolio-section {
     padding: 4rem 2rem;
