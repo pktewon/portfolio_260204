@@ -200,13 +200,10 @@ main {
     perspective: 1000px; /* 3D 효과를 위한 원근감 (부모에게 줌) */
 }
 
-/* 실제 이미지는 마우스 3D 효과만 담당 (등장 애니메이션과 충돌 방지) */
 .hero-image {
     max-width: 80%;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transform-style: preserve-3d;
-    transition: transform 0.1s linear; /* 마우스 따라다니는 건 부드럽게 */
 }
 
 

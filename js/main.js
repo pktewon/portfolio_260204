@@ -28,24 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // --- 3. Mouse-move 3D Effect on Hero Image --- 
-    const hero = document.querySelector('.hero');
-    const heroImage = document.querySelector('.hero-image');
-    if (hero && heroImage) {
-        hero.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const { offsetWidth, offsetHeight } = hero;
-            const xRotation = ((clientY / offsetHeight) - 0.5) * -15; // -7.5 to 7.5 deg
-            const yRotation = ((clientX / offsetWidth) - 0.5) * 15;  // -7.5 to 7.5 deg
-
-            heroImage.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.05)`;
-        });
-
-        hero.addEventListener('mouseleave', () => {
-            heroImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-        });
-    }
-
     // --- 4. Tab Interface (from original file) --- 
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
