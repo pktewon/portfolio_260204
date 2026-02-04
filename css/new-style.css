@@ -272,13 +272,6 @@ main {
     margin-bottom: 3rem;
 }
 
-/* --- 패럴랙스 브릿지 --- */
-.parallax-bridge {
-    height: 40vh;
-    background: url('../images/bridge-bg.jpg') no-repeat center center/cover; 
-    /*  백그라운드 한줄에 위치(position)와 크기(size) 같이 쓰려면 구분하기 위해 / 나눠주자. */
-    background-attachment: fixed;
-}
 
 /* ==========================================================================
    4. 컴포넌트
